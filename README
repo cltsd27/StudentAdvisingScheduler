@@ -1,0 +1,5 @@
+CommonMethods.php is untracked so it needs to be grabbed for this code to work. Type this in a shell from the parent directory.
+
+curl http://userpages.umbc.edu/~slupoli/notes/PHP/supplements/CommonMethods.txt > phpCode/CommonMethods.php
+
+Then input the USERNAME and PASSWORD in the file.

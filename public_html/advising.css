@@ -8,7 +8,7 @@ body {
 	font-size: 26.08px;
 }
 .background {
-	background-image: url("notebook.png");
+	background-image: url("../Images/notebook.png");
 	position: relative;
 	height: 600px;
 	width: 700px;
@@ -20,7 +20,7 @@ body {
 
 /* Background for student sign in */
 .puppy {
-	background-image: url("puppy.png");
+	background-image: url("../Image/puppy.png");
 	position: relative;
 	height: 600px;
 	width: 700px;
@@ -28,7 +28,7 @@ body {
 }
 /* Background for advisor sign in */
 .dog {
-	background-image: url("dog.png");
+	background-image: url("../Image/dog.png");
 	position: relative;
 	height: 600px;
 	width: 700px;

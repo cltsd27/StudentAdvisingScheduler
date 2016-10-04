@@ -1,0 +1,7 @@
+key
+advisor
+is group
+num students currently registered
+students registered (10 slots)
+location
+date (time)

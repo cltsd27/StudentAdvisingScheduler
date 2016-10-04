@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include('./CommonMethods.php');
 $debug = false;
 $COMMON = new Common($debug);
@@ -19,6 +21,14 @@ if($row = mysql_fetch_row($rs)){
   $insert = "INSERT INTO `staff`(`key`, `fName`, `lName`, `department`, `email`, `ID`) VALUES ('', '$fName', '$lName', '$department', '$email', '$staffID')";
   $COMMON->executeQuery($insert, $_SERVER["SCRIPT_NAME"]);
 }
+
+$_SESSION["fName"] = $fName;
+$_SESSION["lName"] = $lName;
+$_SESSION["staffID"] = $staffID;
+$_SESSION["email"] = $email;
+$_SESSION["department"] = $department;
+
+
 ?>
 <html>
 <head lang="en">

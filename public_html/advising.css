@@ -20,7 +20,7 @@ body {
 
 /* Background for student sign in */
 .puppy {
-	background-image: url("../Image/puppy.png");
+	background-image: url("../Images/puppy.png");
 	position: relative;
 	height: 600px;
 	width: 700px;
@@ -28,7 +28,7 @@ body {
 }
 /* Background for advisor sign in */
 .dog {
-	background-image: url("../Image/dog.png");
+	background-image: url("../Images/dog.png");
 	position: relative;
 	height: 600px;
 	width: 700px;

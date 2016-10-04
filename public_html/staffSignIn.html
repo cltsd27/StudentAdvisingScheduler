@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Staff sign in</title>
+</head>
+<body>
+  <div>
+    <h2>Staff Sign In</h2>
+  </div>
+  <div>
+
+    <form method="post" action="../phpCode/staffWelcome.php">
+
+      <label for="fName">First Name:</label><br>
+      <input name="fName" type="text"><br>
+      <label for="lName">Last Name:</label><br>
+      <input name="lName" type="text"><br>
+      <label for="staffID">Staff ID:</label><br>
+      <input name="staffID" type="text"><br>
+      <label for="email">UMBC E-mail:</label><br>
+      <input name="email" type="text"><br>
+      <label for="department">Department:</label><br>
+      <select name="department">
+	<option value="d1">department1</option>
+	<option value="d2">department2</option>
+	<option value="d3">department3</option>
+      </select><br>
+      <input type="submit" value="Submit"><br>
+
+    </form>
+  </div>
+</body>
+</html>
+

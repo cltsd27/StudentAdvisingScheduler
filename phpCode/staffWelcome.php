@@ -1,35 +1,15 @@
 <?php
 
-session_start();
-
-include('./CommonMethods.php');
-$debug = false;
-$COMMON = new Common($debug);
-
-$fName = mysql_real_escape_string($_POST["fName"]);
-$lName = mysql_real_escape_string($_POST["lName"]);
-$staffID = mysql_real_escape_string(strtolower($_POST["staffID"]));
-$email = mysql_real_escape_string($_POST["email"]);
-$department = mysql_real_escape_string($_POST["department"]);
+include("SignUp.php");
+$fields = ["fName", "lName", "department", "email"];
+$ID = "staffID";
+$table = "staff";
 
 
-$queryForExistingUser = "SELECT * FROM `staff` WHERE ID = '$staffID'";
-$rs = $COMMON->executeQuery($queryForExistingUser, $_SERVER["SCRIPT_NAME"]);
-if($row = mysql_fetch_row($rs)){
-  
-} else {
-  $insert = "INSERT INTO `staff`(`key`, `fName`, `lName`, `department`, `email`, `ID`) VALUES ('', '$fName', '$lName', '$department', '$email', '$staffID')";
-  $COMMON->executeQuery($insert, $_SERVER["SCRIPT_NAME"]);
-}
-$rs = $COMMON->executeQuery($queryForExistingUser, $_SERVER["SCRIPT_NAME"]);
-$row = mysql_fetch_row($rs);
-$_SESSION["key"] = $row[0];
-$_SESSION["fName"] = $fName;
-$_SESSION["lName"] = $lName;
-$_SESSION["staffID"] = $staffID;
-$_SESSION["email"] = $email;
-$_SESSION["department"] = $department;
-
+$SIGNUP = new SignUp($fields, $_POST, $ID, $table);
+$SIGNUP->signIn();
+$fName = $_POST["fName"];
+$lName = $_POST["lName"];
 
 ?>
 <html>

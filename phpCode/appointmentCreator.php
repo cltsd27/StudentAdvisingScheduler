@@ -1,11 +1,13 @@
 <?php
 
-session_start();
-$staffSignUpLoc = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/staffSignIn.html";
-if(!isset($_SESSION["staffID"])){
-  header("Location: $staffSignUpLoc");
-  exit();
-}
+include("VerifySession.php");
+
+$verify = "staffID";
+$redirect = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/staffSignIn.html";
+
+$VERIFY = new Verify($verify, $redirect);
+$VERIFY->verifySession();
+
 
 ?>
 <html lang="en">

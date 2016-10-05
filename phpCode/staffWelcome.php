@@ -21,7 +21,9 @@ if($row = mysql_fetch_row($rs)){
   $insert = "INSERT INTO `staff`(`key`, `fName`, `lName`, `department`, `email`, `ID`) VALUES ('', '$fName', '$lName', '$department', '$email', '$staffID')";
   $COMMON->executeQuery($insert, $_SERVER["SCRIPT_NAME"]);
 }
-
+$rs = $COMMON->executeQuery($queryForExistingUser, $_SERVER["SCRIPT_NAME"]);
+$row = mysql_fetch_row($rs);
+$_SESSION["key"] = $row[0];
 $_SESSION["fName"] = $fName;
 $_SESSION["lName"] = $lName;
 $_SESSION["staffID"] = $staffID;

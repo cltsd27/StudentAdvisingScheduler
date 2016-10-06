@@ -5,6 +5,7 @@
   ** This class acts as a way to verify the session. Students
   ** should only be able to view webpages that are meant for students
   ** and not advisors and vice versa.
+  ** NOTE: Verify a session before any other php code is run!!
   **
    */
 class Verify

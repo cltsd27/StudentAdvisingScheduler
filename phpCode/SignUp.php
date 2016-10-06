@@ -61,7 +61,7 @@ class SignUp
   }
 
   function buildSearchQuery() {
-    return "SELECT * FROM `$this->table` WHERE ID = '$this->escapedID'";
+    return "SELECT * FROM `$this->table` WHERE `ID` = '$this->escapedID'";
   }
 
   //insert the user into the table by using the data from $fields

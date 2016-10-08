@@ -1,0 +1,13 @@
+	Dept: BIOL
+Biological Sciences BA  (BIOL BA)
+Biological Sciences BS  (BIOL BS)
+Biochemistry & Molecular Biology BS  (BIOC)
+Bioinformatics & Computational Biology BS  (BINF)
+Biology Education BA  (BIOE)
+	Dept: CHEM
+Chemistry BA (CHEM BA)
+Chemistry BS (CHEM BS)
+Chemistry Education BA (CHED)
+	Dept: CSEE
+Computer Science (CMPE)
+Computer Engineering (CMSC)

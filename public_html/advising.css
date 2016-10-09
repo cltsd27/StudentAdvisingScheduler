@@ -1,5 +1,12 @@
-/* These styles look very nice in Chrome,
-   but are a bit misaligned in Firefox or IE. */
+/* 
+File:    advising.css
+Project: CMSC 331 Project 1
+Author:  Elizabeth Aucott
+Date:	 edited 10/8/16 by Elizabeth
+
+		 This is the css style sheet for all Advising pages. 
+		 These styles look very nice in Chrome, but are a bit misaligned in Firefox or IE. 
+*/
 
 /* Background for every page */
 body { 
@@ -14,7 +21,7 @@ body {
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 5%;
+	margin-top: 2%;
 	overflow: hidden;
 }
 
@@ -34,6 +41,13 @@ body {
 	width: 700px;
 	overflow: hidden;
 }
+/* Background for all other pages */
+.paw {
+	position: relative;
+	height: 600px;
+	width: 700px;
+	overflow: hidden;
+}
 
 /* UMBC Advising tile format */
 .UMBC {
@@ -43,29 +57,45 @@ body {
 	text-align: center;
 }
 /* Page title format */
-.title {
+.signin {
 	position: absolute;
 	top: 114px;
 	left: 110px;
-	width: 300px;
+	width: 590px;
 }
-/* Page body/text input format */
-.form {
-	
+/* Page title format */
+.title {
 	position: absolute;
-	top: 199px;
+	top: 48px;
+	left: 110px;
+	width: 590px;
+}
+/* content for signin page */
+.signinContent {
+	position: absolute;
+	top: 166px;
 	left: 110px;
 	height: 360px;
-	width: 250px;
+	width: 580px;
+}
+/* content for all other pages */
+.content {
+	position: absolute;
+	top: 133px;
+	left: 110px;
+	height: 460px;
+	width: 580px;
+	overflow: auto;
 }
 
 /* Specific fonts/input formats */
 h1 { font-size: 34px; }
-h2 { font-size: 28px; text-decoration: underline; }
+h2 { font-size: 28px; text-decoration: underline;}
+p  { font-size: 20px; margin: 0; line-height: 33px; }
 label { font-size: 26.08px; }
 
 input[type=text] {
-	width: 100%;
+	width: 250px;
 	border: 2px solid #999;
 	font-size: 20px;
 	padding: 4px 4px 4px 4px;
@@ -75,18 +105,49 @@ input[type=text]:focus {
 }
 
 select {
-	width: 100%;
+	width: 420px;
 	border: 2px solid #999;
-	font-size: 20px;
 	padding: 4px 4px 4px 4px;
+	font-size: 20px;
 }
 select:focus {
+	border: 2px solid #555;
+}
+
+input[type=date] {
+	border: 2px solid #999;
+	font-size: 20px;
+}
+input[type=date]:focus {
 	border: 2px solid #555;
 }
 
 input[type=submit] {
 	background-color: #ccc;
 	border: none;
+	padding: 2px 20px 3px 20px;
 	font-size: 24px;
+}
+
+table {
+	border-collapse: collapse; 
+	width: 100%;
+}
+table, th, td {
+	border: 2px solid #999;
+	font-size: 20px;
+	text-align: left;
+	vertical-align: top;
+	line-height: 29px;
+}
+a:link, a:visited {
+	background-color: #ccc;
+	color: black;
+	border: none;
 	padding: 2px 20px 2px 20px;
+	font-size: 24px;
+	text-align: center;
+	text-decoration: none;
+	display: block;
+	width: 300px;
 }

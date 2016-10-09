@@ -1,0 +1,35 @@
+<!-- 
+File:	 studentHome.html
+Project: CMSC 331 Project 1
+Author:	 Elizabeth Aucott 
+Date:	 10/9/16
+
+		 Student home page to navigate to:
+		 - sign up for an appointment (html page to choose date that directs to php)
+		 - view appointment (php page to query sql)
+		 - cancel appointment (php page to confirm then cancel)
+--> 
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UMBC Advising</title>
+    <link rel="stylesheet" type="text/css" href="advising.css">
+  </head>
+  
+  <body>
+    <div class="background"> 
+      <div class="paw">
+        <div class="title"> <h2>Student Home</h2> </div>
+
+        <div class="content">
+          <a href="studentSignUpAppt.html">Sign Up For Appointment</a> <p><br></p>
+		  
+		  <a href="../phpCode/studentViewAppt.php">View Your Appointment</a> <p><br></p>
+		  
+		  <a href="../phpCode/studentCancelAppt.php">Cancel Your Appointment</a>
+        </div>
+      </div> 
+    </div>
+  </body>
+</html>

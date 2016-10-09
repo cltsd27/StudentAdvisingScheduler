@@ -9,5 +9,5 @@ Dept: CHEM
 	Chemistry BS (CHEM BS)
 	Chemistry Education BA (CHED)
 Dept: CSEE
-	Computer Science (CMPE)
-	Computer Engineering (CMSC)
+	Computer Science (CMSC)
+	Computer Engineering (CMPE)

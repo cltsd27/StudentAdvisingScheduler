@@ -14,6 +14,12 @@ include('../CommonMethods.php');
 $debug = false;
 $COMMON = new Common($debug); 
 
+$verify = "staffID";
+$redirect = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/staffSignIn.html";
+
+$VERIFY = new Verify($verify, $redirect);
+$VERIFY->verifySession();
+
 $date = $_POST['datePickedDay'];
 
 $sql = "SELECT * FROM `Appointment` WHERE `Date`='$date' ORDER BY `Time`"; // Need to add AND adviserkey

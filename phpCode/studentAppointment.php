@@ -2,11 +2,15 @@
 session_start();
 $debug = false;
 include('CommonMethods.php');
+include('VerifySession.php');
 $COMMON = new Common($debug);
 
-//$student= mysql_real_escape_string($_SESSION["key"]);
+$verify = "studID";
+$redirect = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/studentSignIn.html";
+$VERIFY = new Verify($verify, $redirect);
+$VERIFY->verifySession();
 
-$student = 1;
+$student= mysql_real_escape_string($_SESSION["key"]);
 
 $currentAppointment = "SELECT * FROM `meetings` WHERE `student1` = " . $student;
 for($i = 2;$i<=10; $i+=1)
@@ -23,7 +27,7 @@ if($rows = mysql_fetch_array($results))
   $staffRS = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
   $staffInfo  = mysql_fetch_array($staffRS);
 
-  $advisor = ($staffInfo['fname']. " ".$staffInfo['lname']);
+  $advisor = ($staffInfo['fName']. " ".$staffInfo['lName']);
   $isGroup = $rows['isGroup'];
   $location = $rows['location'];
   $dateTime = $rows['dateTime'];
@@ -54,7 +58,7 @@ else
       $staffInfo  = mysql_fetch_array($staffRS);
 
       $key = $rows['key'];
-      $advisor = ($staffInfo['fname']. " ".$staffInfo['lname']);                                               
+      $advisor = ($staffInfo['fName']. " ".$staffInfo['lName']);                                               
       $isGroup = $rows['isGroup'];                                                
       $location = $rows['location'];                                            
       $dateTime = $rows['dateTime'];                                          

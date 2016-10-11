@@ -15,11 +15,12 @@ $debug = false;
 $COMMON = new Common($debug);
 $rs = $COMMON->executeQuery($queryAppointments, $_SERVER["SCRIPT_NAME"]);
 
+//build top html and table header
 echo("<html>
 <head>
 </head>
 <body>
-<form method=\"post\" action=\"appontmentCancel.php\">
+<form method=\"post\" action=\"appointmentCancel.php\">
 <table>
 <tr>
   <th>Group</th>
@@ -31,6 +32,7 @@ echo("<html>
 </tr>
 ");
 
+//populate table data
 while($row = mysql_fetch_row($rs)){
   echo("<tr>\n");
   if($row[2] == "1"){
@@ -46,11 +48,15 @@ while($row = mysql_fetch_row($rs)){
   if($row[3] == "0"){
     echo("  <td>None</td>\n");
   }
-  echo("  <td><input type=\"checkbox\" value=\"$row[0]\"></td>\n");
+  echo("  <td><input type=\"checkbox\" name=\"$row[0]\" value=\"$row[0]\"></td>\n");
   echo("</tr>\n");
 }
+
+//end html
 echo("</table>
 <input type=\"submit\" value=\"Submit\">
 </form>
-</body>");
+</body>
+</html>");
+
 ?>

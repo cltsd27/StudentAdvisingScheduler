@@ -10,7 +10,6 @@ $SIGNUP = new SignUp($fields, $_POST, $ID, $table);
 $SIGNUP->signIn();
 $fName = $_POST["fName"];
 $lName = $_POST["lName"];
-
 ?>
 <html>
 <head lang="en">

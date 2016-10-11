@@ -6,12 +6,12 @@ $COMMON = new Common($debug);
 
 //$student= mysql_real_escape_string($_SESSION["key"]);
 
-$student = 1;
+$student = 4;
 
-$currentAppointment = "SELECT * FROM `meetings` WHERE `student1` = " . $student;
+$currentAppointment = "SELECT * FROM `Appointment` WHERE `Stu1` = " . $student;
 for($i = 2;$i<=10; $i+=1)
 {
-  $currentAppointment = $currentAppointment. " OR `student".$i."` = " .$student;
+  $currentAppointment = $currentAppointment. " OR `Stu".$i."` = " .$student;
 }
 
 $results = $COMMON->executeQuery($currentAppointment, $_SERVER["SCRIPT_NAME"]);
@@ -19,28 +19,29 @@ $results = $COMMON->executeQuery($currentAppointment, $_SERVER["SCRIPT_NAME"]);
 if($rows = mysql_fetch_array($results))
 {
 
-  $query = "SELECT * FROM `staff` WHERE `key` =".$rows['advisor'];
+  $query = "SELECT * FROM `Adviser` WHERE `key` =".$rows['Adviser'];
   $staffRS = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
   $staffInfo  = mysql_fetch_array($staffRS);
 
-  $advisor = ($staffInfo['fname']. " ".$staffInfo['lname']);
-  $isGroup = $rows['isGroup'];
-  $location = $rows['location'];
-  $dateTime = $rows['dateTime'];
+  $advisor = ($staffInfo['FirstName']. " ".$staffInfo['LastName']);
+  $isGroup = $rows['IsGroup'];
+  $location = $rows['Location'];
+  $date = $rows['Date'];
+  $time = $rows['Time'];
 
-  echo ("You already have an appointment:<br>\t");
+  echo ("You already have an appointment:<br><br>");
   if($isGroup){
-    echo ("Group ". str_repeat("&nbsp;", 10));
+    echo ("Group ");
   }
   else{
-    echo ("Individual ".str_repeat("&nbsp;", 5));}
+    echo ("Individual ");}
   
-  echo(" with ".$advisor. " in ".$location." at ". $dateTime.".");
+  echo("<br>Adviser: ".$advisor. "<br>Location: ".$location."<br>Date: ".$date."<br>Time: ".$time);
 
 }
 else
 {
-  $query = "SELECT * FROM `meetings` WHERE `numStudentsRegistered` = 0 OR (`isGroup`= 1 AND `numStudentsRegistered` < 10)";
+  $query = "SELECT * FROM `Appointment` WHERE `NumStu` = 0 OR (`IsGroup`= 1 AND `NumStu` < 10)";
   $results = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
 
   if($rows = mysql_fetch_array($results)){
@@ -49,16 +50,17 @@ else
     echo ("<table>");
 
     do{
-      $query = "SELECT * FROM `staff` WHERE `key` =".$rows['advisor'];
+      $query = "SELECT * FROM `Adviser` WHERE `key` =".$rows['Adviser'];
       $staffRS = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
       $staffInfo  = mysql_fetch_array($staffRS);
 
-      $key = $rows['key'];
-      $advisor = ($staffInfo['fname']. " ".$staffInfo['lname']);                                               
-      $isGroup = $rows['isGroup'];                                                
-      $location = $rows['location'];                                            
-      $dateTime = $rows['dateTime'];                                          
-      
+      $key = $rows['Key'];
+      $advisor = ($staffInfo['FirstName']. " ".$staffInfo['LastName']);                                               
+      $isGroup = $rows['IsGroup'];                                                
+      $location = $rows['Location'];                                            
+      $date = $rows['Date'];
+      $time = $rows['Time'];      
+
       if($isGroup){                                                       
 	$group = "Group";                                 
       }                                                               
@@ -66,8 +68,8 @@ else
 	$group = "Individual";}
 
       echo ("<tr><td>". $group."</td><td>".str_repeat("&nbsp;", 10)."</td>"."<td>". $advisor."</td><td>".str_repeat("&nbsp;", 2)."</td>".
-	    "<td>". $location."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>". $dateTime."</td><td>".str_repeat("&nbsp;", 2)."</td>".
-	    "<td><input type=\"radio\" name=\"appoitment\" value=\"".$key."\"></td></tr>");
+	    "<td>". $location."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>". $date."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>".
+	    $time."</td><td>".str_repeat("&nbsp;", 2)."</td><td><input type=\"radio\" name=\"appoitment\" value=\"".$key."\"></td></tr>");
 
     } while ($rows = mysql_fetch_array($results));
     

@@ -12,7 +12,7 @@ $COMMON = new Common($debug);
 
 //delete every meeting checked
 foreach($_POST as $val){
-  $deleteQuery = "DELETE FROM `meetings` WHERE `key` = $val";
+  $deleteQuery = "DELETE FROM `Appointment` WHERE `key` = $val";
   $COMMON->executeQuery($deleteQuery, $_SERVER["SCRIPT_NAME"]);
 }
 

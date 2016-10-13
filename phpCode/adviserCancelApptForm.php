@@ -10,7 +10,7 @@ $VERIFY->verifySession();
 
 
 $key = $_SESSION["key"];
-$queryAppointments = "SELECT * FROM `meetings` WHERE advisor = $key";
+$queryAppointments = "SELECT * FROM `Appointment` WHERE advisor = $key";
 $debug = false;
 $COMMON = new Common($debug);
 $rs = $COMMON->executeQuery($queryAppointments, $_SERVER["SCRIPT_NAME"]);

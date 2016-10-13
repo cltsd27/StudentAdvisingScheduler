@@ -6,8 +6,8 @@ Project: CMSC 331 Project 1
 Author:	 Elizabeth Aucott 
 Date:	 10/8/16  Edited 10/13/16 by Elizabeth
 
-		 This is the adviser view appointment html page. 
-		 It currently only works with Chrome or Opera. 
+         This is the adviser view appointment php page. 
+         The date input box only works with Chrome or Opera. 
 */
 
 include("VerifySession.php");

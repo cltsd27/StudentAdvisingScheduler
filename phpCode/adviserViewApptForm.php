@@ -32,7 +32,7 @@ $VERIFY->verifySession();
         <div class="title"> <h2>View Appointments</h2> </div>
 
         <div class="content">
-          <form method="post" action="../phpCode/adviserApptViewer.php">
+          <form method="post" action="../phpCode/adviserViewAppt.php">
             <!-- This date form only works in Opera and Chrome.
                  Apparently to get a little calendar you need to use
                  Javascript. I guess that will be something we can implement in

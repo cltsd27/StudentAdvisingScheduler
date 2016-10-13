@@ -3,20 +3,31 @@
 File:	 adviserApptViewer.php
 Project: CMSC 331 Project 1
 Author:	 Elizabeth Aucott 
-Date:	 10/8/16
+Date:	 10/8/16    Edited 10/13/16 by Elizabeth
 
-		 This is the php file to fetch and display adviser appointments. 
+         This is the php file to fetch and display adviser appointments. 
 
 */ 
-include('../public_html/head.html');
+include("../public_html/head.html");
+include("VerifySession.php");
+include("CommonMethods.php");
 
-include('../CommonMethods.php');
+// verify session 
+$verify = "staffID";
+$redirect = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/staffSignIn.html";
+$VERIFY = new Verify($verify, $redirect);
+$VERIFY->verifySession();
+
+// get adviser key and date
+$key = $_SESSION["key"];
+$date = $_POST['datePickedDay'];
+
+// Common Methods
 $debug = false;
 $COMMON = new Common($debug); 
 
-$date = $_POST['datePickedDay'];
-
-$sql = "SELECT * FROM `Appointment` WHERE `Date`='$date' ORDER BY `Time`"; // Need to add AND adviserkey
+// sql query 
+$sql = "SELECT * FROM `Appointment` WHERE (`Date`='$date' AND `Key`=$key) ORDER BY `Time`";
 $rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
 
 echo("<div class=\"title\"> <h2>View Appointments</h2> </div>");

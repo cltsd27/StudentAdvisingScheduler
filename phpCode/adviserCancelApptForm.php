@@ -14,13 +14,12 @@ $queryAppointments = "SELECT * FROM `meetings` WHERE advisor = $key";
 $debug = false;
 $COMMON = new Common($debug);
 $rs = $COMMON->executeQuery($queryAppointments, $_SERVER["SCRIPT_NAME"]);
-
 //build top html and table header
 echo("<html>
 <head>
 </head>
 <body>
-<form method=\"post\" action=\"appointmentCancel.php\">
+<form method=\"post\" action=\"adviserCancelAppt.php\">
 <table>
 <tr>
   <th>Group</th>

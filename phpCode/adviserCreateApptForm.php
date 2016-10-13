@@ -22,7 +22,7 @@ $VERIFY->verifySession();
   </div>
   <div>
 
-    <form method="post" action="createAppointment.php">
+    <form method="post" action="adviserCreateAppt.php">
 
       <label for="cbIsGroup">Group</label><br>
       <input value="1" type="checkbox" name="cbIsGroup"><br>

@@ -6,7 +6,7 @@ $COMMON = new Common($debug);
 
 //$student= mysql_real_escape_string($_SESSION["key"]);
 
-$student = 6;
+$student = 1;
 
 $createAppointment = false;
 
@@ -28,6 +28,10 @@ else
   $query = "SELECT * FROM `Appointment` WHERE `NumStu` = 0 OR (`IsGroup`= 1 AND `NumStu` < 10)";
   $results = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
 
+  $query = "SELECT `Major` FROM `Student` WHERE `Key` = ".$student." lIMIT 1";
+  $getMajor = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
+  $major  = mysql_result($getMajor,0);
+
   if($rows = mysql_fetch_array($results)){
     $createAppointment = true;
     echo ("Availible appointments are:<br><br>"); 
@@ -48,16 +52,24 @@ else
       $time = $rows['Time'];     
       $numSt = $rows['NumStu'];
 
+      $dep = $staffInfo['Department'];
+
       if($isGroup){                                                       
 	$group = "Group";                                 
       }                                                               
       else{                 
 	$group = "Individual";}
 
+      $csee = ($major == "CMSC" || $major == "CMPE") && $dep == "CSEE";
+      $biol = ($major == "BIOL" || $major == "BIOC" || $major == "BINF" || $major == "BIOE") && $dep == "BIOL";
+      $chem = ($major == "CHEM" || $major == "CHED") && $dep == "CHEM";
+
+      if($biol || $csee ||$chem){
+
       echo ("<tr><td>". $group."</td><td>".str_repeat("&nbsp;", 10)."</td>"."<td>". $advisor."</td><td>".str_repeat("&nbsp;", 2)."</td>".
 	    "<td>". $location."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>". $date."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>".
 	    $time."</td><td>".str_repeat("&nbsp;", 2)."</td><td><input type='radio' name='appoitment' value='".$key."'></td></tr>");
-
+	}
     } while ($rows = mysql_fetch_array($results));
     
     echo ("</table>");

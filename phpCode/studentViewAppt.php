@@ -6,7 +6,7 @@ $COMMON = new Common($debug);
 
 //$student= mysql_real_escape_string($_SESSION["key"]);
 
-$student = 6;
+$student = 1;
 
 
 $currentAppointment = "SELECT * FROM `Appointment` WHERE `Stu1` = " . $student;

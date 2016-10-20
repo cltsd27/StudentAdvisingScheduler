@@ -6,7 +6,7 @@ $COMMON = new Common($debug);
 
 //$student= mysql_real_escape_string($_SESSION["key"]);
 
-$student = 6;
+$student = 1;
 
 
 $currentAppointment = "SELECT * FROM `Appointment` WHERE `Stu1` = " . $student;
@@ -33,7 +33,7 @@ if($rows = mysql_fetch_array($results))
   
   for($i = 1;$i<=10; $i++)
   {
-    if($student == $rows['Stu'.$i.]){$stuNum = $i;}
+    if($student == $rows['Stu'.$i]){$stuNum = $i;}
   }
 
 
@@ -46,29 +46,27 @@ if($rows = mysql_fetch_array($results))
   
   echo("<br>Adviser: ".$advisor. "<br>Location: ".$location."<br>Date: ".$date."<br>Time: ".$time);
 
-  echo ("<br><br><form action='../public_html/studentHome.html'>");
+  echo ("<br><br><form method=\"POST\" action=''>");
 
   echo("<br><input type=\"submit\" name=\"deleteButton\"  value=\"Delete Appointment\">");
   echo("</form>");
 
   if (isset($_POST['deleteButton'])){
 
-    $num  = $rows['NumStu']
-    $num--;
+    $num  = $rows['NumStu'];
 
+    $updateQuery = ("UPDATE `Appointment` SET ");
 
-    $updateQuery = ("UPDATE `Appointment` SET ")
-
-    for($i = $stuNum;$i <=9;$i++)
+    for($i = $stuNum;$i <=($num-1);$i++)
     {
-      $updateQuery +=("`Stu".$i"` = ".$rows['Stu'.($i+1)]." WHERE `Key` = ".$selected);//this is wrong
+      $updateQuery =($updateQuery." `Stu".$i."` = ".$rows['Stu'.($i+1)].",");
     }
+    $updateQuery =($updateQuery." `Stu".$num."` = NULL, `NumStu` = ".($num-1)." WHERE `Key` = ".$appoitment); 
+
 
     $COMMON->executeQuery($updateQuery, $_SERVER["SCRIPT_NAME"]);
-    
-    $updateQuery = ("UPDATE `Appointment` SET `NumStu` = ".$num. " WHERE `Key` = ".$selected);
-    $COMMON->executeQuery($updateQuery, $_SERVER["SCRIPT_NAME"]);
-    header("Refresh:0");
+    header("Location:  ../public_html/studentHome.html");
+    exit();
     }
 
 }

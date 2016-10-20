@@ -8,7 +8,8 @@ $COMMON = new Common($debug);
 
 $student = 1;
 
-$createAppointment = false;
+$numApp = 0;
+
 
 $currentAppointment = "SELECT * FROM `Appointment` WHERE `Stu1` = " . $student;
 for($i = 2;$i<=10; $i+=1)
@@ -33,7 +34,7 @@ else
   $major  = mysql_result($getMajor,0);
 
   if($rows = mysql_fetch_array($results)){
-    $createAppointment = true;
+    
     echo ("Availible appointments are:<br><br>"); 
     echo("<form method=\"POST\" action=''>");
 
@@ -65,21 +66,20 @@ else
       $chem = ($major == "CHEM" || $major == "CHED") && $dep == "CHEM";
 
       if($biol || $csee ||$chem){
-
+	$numApp++;
       echo ("<tr><td>". $group."</td><td>".str_repeat("&nbsp;", 10)."</td>"."<td>". $advisor."</td><td>".str_repeat("&nbsp;", 2)."</td>".
 	    "<td>". $location."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>". $date."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>".
 	    $time."</td><td>".str_repeat("&nbsp;", 2)."</td><td><input type='radio' name='appoitment' value='".$key."'></td></tr>");
 	}
     } while ($rows = mysql_fetch_array($results));
     
+    
     echo ("</table>");
-
+    if($numApp>0){
     echo("<br><input type=\"submit\" name=\"submitButton\"  value=\"Submit\">");
+}
     echo("</form>");
   
-  }
-  else{
-    echo ("Sorry there are no appointments availible at this time<br>\t");
   }
 
   
@@ -100,6 +100,13 @@ else
     header("Refresh:0");
     }
 
+  if($numApp == 0){
+    echo ("Sorry there are no appointments availible at this time<br>\t");
+    echo("<form method=\"POST\" action='../public_html/studentHome.html'>"); 
+    echo("<br><input type=\"submit\" name=\"backButton\"  value=\"Back\">");
+    echo("</form>");
+
+  }
 
 }
 

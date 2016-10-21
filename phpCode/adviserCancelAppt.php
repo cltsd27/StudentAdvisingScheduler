@@ -17,4 +17,4 @@ foreach($_POST as $val){
 }
 
 //redirect to cancelAppointment page
-header("Location: https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/phpCode/cancelAppointment.php");
+header("Location: https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/phpCode/adviserCancelApptForm.php");

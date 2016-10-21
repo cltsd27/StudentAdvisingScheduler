@@ -91,7 +91,7 @@ else {
 
 
 // Links to view another appointment or go back to home
-echo("<p><br></p> <a href=\"../public_html/adviserViewAppt.html\">View Another Appointment</a> <p><br></p>");
+echo("<p><br></p> <a href=\"../phpCode/adviserViewApptForm.php\">View Another Appointment</a> <p><br></p>");
 echo("<a href=\"../public_html/adviserHome.html\">Adviser Home</a> <p><br></p>");
 
 echo("</div>");

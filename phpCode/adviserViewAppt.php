@@ -27,7 +27,7 @@ $debug = false;
 $COMMON = new Common($debug); 
 
 // sql query 
-$sql = "SELECT * FROM `Appointment` WHERE (`Date`='$date' AND `Key`=$key) ORDER BY `Time`";
+$sql = "SELECT * FROM `Appointment` WHERE (`Date`='$date' AND `Adviser`=$key) ORDER BY `Time`";
 $rs = $COMMON->executeQuery($sql, $_SERVER["SCRIPT_NAME"]);
 
 echo("<div class=\"title\"> <h2>View Appointments</h2> </div>");

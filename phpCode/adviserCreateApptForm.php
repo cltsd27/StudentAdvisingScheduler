@@ -30,7 +30,7 @@ $VERIFY->verifySession();
       <label for="tfLocation">Location</label><br>
       <input type="text" name="tfLocation"><br>
 
-      <label for="date">Date</label><br>
+      <label for="date">Date (yyyy-mm-dd)</label><br>
       <input type="date" name="date"><br>
 
       <label for="rbTime">Time slot</label><br>
@@ -57,5 +57,6 @@ $VERIFY->verifySession();
     </form>
     
   </div>
+  <a href="../public_html/adviserHome.html"> Home </a>
 </body>
 </html>

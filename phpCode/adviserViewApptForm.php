@@ -23,7 +23,7 @@ $VERIFY->verifySession();
 <html>
   <head>
     <title>UMBC Advising</title>
-    <link rel="stylesheet" type="text/css" href="advising.css">
+    <link rel="stylesheet" type="text/css" href="../public_html/advising.css">
   </head>
   
   <body>
@@ -37,7 +37,7 @@ $VERIFY->verifySession();
                  Apparently to get a little calendar you need to use
                  Javascript. I guess that will be something we can implement in
                  project 2. -->
-            <label for="datePickedDay">Select a date:</label><br>
+            <label for="datePickedDay">Select a date (yyyy-mm-dd):</label><br>
             <input type="date" name="datePickedDay"><br><br>
             
 			<input type="submit" value="Submit"><br>
@@ -45,5 +45,6 @@ $VERIFY->verifySession();
         </div>
       </div> 
     </div>
+  <a href="../public_html/adviserHome.html"> Home </a>
   </body>
 </html>

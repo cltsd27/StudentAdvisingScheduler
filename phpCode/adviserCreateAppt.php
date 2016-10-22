@@ -11,9 +11,9 @@ $isGroup = isset($_POST["cbIsGroup"]) ? 1 : 0;
 $location = mysql_real_escape_string($_POST["tfLocation"]);
 $date = mysql_real_escape_string($_POST["date"]);
 $time = mysql_real_escape_string($_POST["rbTime"]);
-$dateTime = $date . " " . $time . ":00";
-
-$insertMeetingQuery = "INSERT INTO `Appointment` (`key`, `advisor`, `isGroup`, `numStudentsRegistered`, `location`, `dateTime`) VALUES ('', $advisor, $isGroup, 0, '$location', '$dateTime')";
+echo ($date);
+$formattedDate = 
+$insertMeetingQuery = "INSERT INTO `Appointment` (`Key`, `Adviser`, `IsGroup`, `NumStu`, `Location`, `Date`, `Time`) VALUES ('', $advisor, $isGroup, 0, '$location', '$date', '$time')";
 $COMMON->executeQuery($insertMeetingQuery, $_SERVER["SCRIPT_NAME"]);
 
 ?>
@@ -28,3 +28,8 @@ $COMMON->executeQuery($insertMeetingQuery, $_SERVER["SCRIPT_NAME"]);
 </body>
 </html>
 
+<?php
+
+  header("Location: https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/adviserHome.html");
+
+?>

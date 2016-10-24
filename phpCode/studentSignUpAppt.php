@@ -4,13 +4,14 @@ $debug = false;
 include('CommonMethods.php');
 $COMMON = new Common($debug);
 
-//$student= mysql_real_escape_string($_SESSION["key"]);
+$student= mysql_real_escape_string($_SESSION["key"]);
 
-$student = 1;
+//$student = 1;
 
+//checks number of appointments
 $numApp = 0;
 
-
+//checks if student already has an appointment created
 $currentAppointment = "SELECT * FROM `Appointment` WHERE `Stu1` = " . $student;
 for($i = 2;$i<=10; $i+=1)
 {
@@ -19,11 +20,13 @@ for($i = 2;$i<=10; $i+=1)
 
 $results = $COMMON->executeQuery($currentAppointment, $_SERVER["SCRIPT_NAME"]);
 
+//if an appointment exists redirect to view appointment
 if($rows = mysql_fetch_array($results))
 {
   header("Location: studentViewAppt.php");
   exit();
 }
+//otherwise find availible appointments
 else
 {
   $query = "SELECT * FROM `Appointment` WHERE `NumStu` = 0 OR (`IsGroup`= 1 AND `NumStu` < 10)";
@@ -37,10 +40,12 @@ else
     
     echo ("Availible appointments are:<br><br>"); 
     echo("<form method=\"POST\" action=''>");
-
+    // using a table gather all important information about the appointment and aquire the advisors name
+    // and display in a table with radio buttons
     echo ("<table>");
 
     do{
+      //aquire advisors name
       $query = "SELECT * FROM `Adviser` WHERE `Key` =".$rows['Adviser'];
       $staffRS = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
       $staffInfo  = mysql_fetch_array($staffRS);
@@ -61,9 +66,10 @@ else
       else{                 
 	$group = "Individual";}
 
+      //only print the appointment if the major and epartment match
       $csee = ($major == "CMSC" || $major == "CMPE") && $dep == "CSEE";
-      $biol = ($major == "BIOL" || $major == "BIOC" || $major == "BINF" || $major == "BIOE") && $dep == "BIOL";
-      $chem = ($major == "CHEM" || $major == "CHED") && $dep == "CHEM";
+      $biol = (preg_match('/BIOL/',$major) || $major == "BIOC" || $major == "BINF" || $major == "BIOE") && $dep == "BIOL";
+      $chem = (preg_match('/CHEM/',$major)  || $major == "CHED") && $dep == "CHEM";
 
       if($biol || $csee ||$chem){
 	$numApp++;
@@ -76,13 +82,16 @@ else
     
     echo ("</table>");
     if($numApp>0){
-    echo("<br><input type=\"submit\" name=\"submitButton\"  value=\"Submit\">");
+      echo("<form method=\"POST\" action='../public_html/studentHome.html'>");
+      echo("<br><input type=\"submit\" name=\"backButton\"  value=\"Back\">");
+
+    echo("<input type=\"submit\" name=\"submitButton\"  value=\"Submit\">");
 }
     echo("</form>");
   
   }
 
-  
+  //after selecting an appointment you can submit it to the data base
   if (isset($_POST['submitButton'])){
     $selected = $_POST['appoitment'];
 
@@ -97,9 +106,11 @@ else
     
     $updateQuery = ("UPDATE `Appointment` SET `NumStu` = ".$num. " WHERE `Key` = ".$selected);
     $COMMON->executeQuery($updateQuery, $_SERVER["SCRIPT_NAME"]);
+    //refresh page
     header("Refresh:0");
     }
 
+  //if no appointment exist state so
   if($numApp == 0){
     echo ("Sorry there are no appointments availible at this time<br>\t");
     echo("<form method=\"POST\" action='../public_html/studentHome.html'>"); 

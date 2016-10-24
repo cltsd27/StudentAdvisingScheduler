@@ -3,7 +3,7 @@
 include("VerifySession.php");
 include("CommonMethods.php");
 $verify = "staffID";
-$redirect = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/staffSignIn.html";
+$redirect = "../public_html/staffSignIn.html";
 
 $VERIFY = new Verify($verify, $redirect);
 $VERIFY->verifySession();
@@ -17,4 +17,4 @@ foreach($_POST as $val){
 }
 
 //redirect to cancelAppointment page
-header("Location: https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/phpCode/adviserCancelApptForm.php");
+header("Location: adviserCancelApptForm.php");

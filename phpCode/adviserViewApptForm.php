@@ -42,9 +42,11 @@ $VERIFY->verifySession();
             
 			<input type="submit" value="Submit"><br>
           </form> 
+          
+          <br>
+          <a href="../public_html/adviserHome.html"> Home </a>
         </div>
       </div> 
     </div>
-  <a href="../public_html/adviserHome.html"> Home </a>
   </body>
 </html>

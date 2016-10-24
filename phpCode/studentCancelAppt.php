@@ -4,9 +4,10 @@ $debug = false;
 include('CommonMethods.php');
 $COMMON = new Common($debug);
 
-$student= mysql_real_escape_string($_SESSION["key"]);
+// HTML head
+include("../public_html/head.html");
 
-//$student = 1;
+$student= mysql_real_escape_string($_SESSION["key"]);
 
 
 $currentAppointment = "SELECT * FROM `Appointment` WHERE `Stu1` = " . $student;
@@ -35,21 +36,26 @@ if($rows = mysql_fetch_array($results))
   {
     if($student == $rows['Stu'.$i]){$stuNum = $i;}
   }
+  
+  echo("<div class=\"title\"> <h2>Cancel Appointment</h2> </div>");
+  echo("<div class=\"content\">");
 
 
-  echo ("Delete this Appointment:<br><br>");
+  echo ("<p>Delete this Appointment:<br>");
   if($isGroup){
     echo ("Group ");
   }
   else{
     echo ("Individual ");}
   
-  echo("<br>Adviser: ".$advisor. "<br>Location: ".$location."<br>Date: ".$date."<br>Time: ".$time);
+  echo("<br>Adviser: ".$advisor. "<br>Location: ".$location."<br>Date: ".$date."<br>Time: ".$time . "</p>");
 
-  echo ("<br><br><form method=\"POST\" action=''>");
+  echo ("<form method=\"POST\" action=''>");
 
-  echo("<br><input type=\"submit\" name=\"deleteButton\"  value=\"Delete Appointment\">");
+  echo("<input type=\"submit\" name=\"deleteButton\"  value=\"Delete Appointment\">");
   echo("</form>");
+  
+  echo("<br><a href=\"../public_html/studentHome.html\">Student Home</a>");
 
   if (isset($_POST['deleteButton'])){
 
@@ -74,5 +80,8 @@ else{
      header("Location: studentViewAppt.php");
      exit();
 }
+
+// HTML tail 
+include('../public_html/tail.html');
 
 ?>

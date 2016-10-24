@@ -3,7 +3,7 @@
 include("VerifySession.php");
 include("CommonMethods.php");
 $verify = "staffID";
-$redirect = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/staffSignIn.html";
+$redirect = "../public_html/staffSignIn.html";
 
 $VERIFY = new Verify($verify, $redirect);
 $VERIFY->verifySession();
@@ -14,11 +14,16 @@ $queryAppointments = "SELECT * FROM `Appointment` WHERE `Adviser` = $key";
 $debug = false;
 $COMMON = new Common($debug);
 $rs = $COMMON->executeQuery($queryAppointments, $_SERVER["SCRIPT_NAME"]);
-//build top html and table header
-echo("<html>
-<head>
-</head>
-<body>
+
+// HTML Head
+include("../public_html/head.html");
+
+// HTML/CSS styling
+echo("<div class=\"title\"> <h2>Cancel Appointment</h2> </div>");
+echo("<div class=\"content\">");
+
+//build table header
+echo("
 <form method=\"post\" action=\"adviserCancelAppt.php\">
 <table>
 <tr>
@@ -66,8 +71,9 @@ while($row = mysql_fetch_row($rs)){
 echo("</table>
 <input type=\"submit\" value=\"Submit\">
 </form>
-<a href='../public_html/adviserHome.html'> Home </a>
-</body>
-</html>");
+<br><a href='../public_html/adviserHome.html'>Adviser Home </a>");
+
+// HTML Tail
+include('../public_html/tail.html');
 
 ?>

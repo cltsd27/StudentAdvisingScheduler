@@ -4,9 +4,10 @@ $debug = false;
 include('CommonMethods.php');
 $COMMON = new Common($debug);
 
-$student= mysql_real_escape_string($_SESSION["key"]);
+// HTML head
+include("../public_html/head.html");
 
-//$student = 1;
+$student= mysql_real_escape_string($_SESSION["key"]);
 
 
 $currentAppointment = "SELECT * FROM `Appointment` WHERE `Stu1` = " . $student;
@@ -16,6 +17,9 @@ for($i = 2;$i<=10; $i+=1)
 }
 
 $results = $COMMON->executeQuery($currentAppointment, $_SERVER["SCRIPT_NAME"]);
+
+echo("<div class=\"title\"> <h2>View Appointment</h2> </div>");
+echo("<div class=\"content\">");
 
 if($rows = mysql_fetch_array($results))
 {
@@ -38,19 +42,18 @@ if($rows = mysql_fetch_array($results))
     echo ("Individual ");}
   
   echo("<br>Adviser: ".$advisor. "<br>Location: ".$location."<br>Date: ".$date."<br>Time: ".$time);
+  echo("<br><br>");
 
 }
 else{
-    echo ("Sorry you do not have an appointment yet<br>\t");
+    echo ("Sorry you do not have an appointment yet.<br><br>");
 }
 
   
-  echo ("<br><br><form action='../public_html/studentHome.html'>");
-
-  echo("<br><input type=\"submit\" name=\"menuButton\"  value=\"Menu\">");
-  echo("</form>");
+echo("<a href=\"../public_html/studentHome.html\">Student Home</a>");
 
 
-
+// HTML tail 
+include('../public_html/tail.html');
 
 ?>

@@ -4,9 +4,10 @@ $debug = false;
 include('CommonMethods.php');
 $COMMON = new Common($debug);
 
-$student= mysql_real_escape_string($_SESSION["key"]);
+// HTML head
+include("../public_html/head.html");
 
-//$student = 1;
+$student= mysql_real_escape_string($_SESSION["key"]);
 
 //checks number of appointments
 $numApp = 0;
@@ -37,6 +38,9 @@ else
   $major  = mysql_result($getMajor,0);
 
   if($rows = mysql_fetch_array($results)){
+    // HTML styling 
+    echo("<div class=\"title\"> <h2>Sign Up for an Appointment</h2> </div>");
+    echo("<div class=\"content\">");
     
     echo ("Availible appointments are:<br><br>"); 
     echo("<form method=\"POST\" action=''>");
@@ -61,10 +65,11 @@ else
       $dep = $staffInfo['Department'];
 
       if($isGroup){                                                       
-	$group = "Group";                                 
+        $group = "Group";                                 
       }                                                               
       else{                 
-	$group = "Individual";}
+        $group = "Individual";
+      }
 
       //only print the appointment if the major and epartment match
       $csee = ($major == "CMSC" || $major == "CMPE") && $dep == "CSEE";
@@ -72,23 +77,19 @@ else
       $chem = (preg_match('/CHEM/',$major)  || $major == "CHED") && $dep == "CHEM";
 
       if($biol || $csee ||$chem){
-	$numApp++;
-      echo ("<tr><td>". $group."</td><td>".str_repeat("&nbsp;", 10)."</td>"."<td>". $advisor."</td><td>".str_repeat("&nbsp;", 2)."</td>".
-	    "<td>". $location."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>". $date."</td><td>".str_repeat("&nbsp;", 2)."</td>"."<td>".
-	    $time."</td><td>".str_repeat("&nbsp;", 2)."</td><td><input type='radio' name='appoitment' value='".$key."'></td></tr>");
-	}
+        $numApp++;
+     
+        echo ("<tr><td>" . $group. "</td><td>" . $advisor . "</td><td>" . $location . "</td><td>" . $date."</td><td>" . $time . "</td><td><input type='radio' name='appoitment' value='\".$key.\"'></td></tr>");
+      }
     } while ($rows = mysql_fetch_array($results));
     
     
     echo ("</table>");
-    if($numApp>0){
-      echo("<form method=\"POST\" action='../public_html/studentHome.html'>");
-      echo("<br><input type=\"submit\" name=\"backButton\"  value=\"Back\">");
-
-    echo("<input type=\"submit\" name=\"submitButton\"  value=\"Submit\">");
-}
+    
+    echo("<input type=\"submit\" name=\"submitButton\"  value=\"Submit\"><br><br>");
     echo("</form>");
-  
+    
+    echo("<a href=\"../public_html/studentHome.html\">Student Home</a>");
   }
 
   //after selecting an appointment you can submit it to the data base
@@ -120,5 +121,8 @@ else
   }
 
 }
+
+// HTML tail 
+include('../public_html/tail.html');
 
 ?>

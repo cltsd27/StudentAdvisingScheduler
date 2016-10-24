@@ -79,7 +79,7 @@ else
       if($biol || $csee ||$chem){
         $numApp++;
      
-        echo ("<tr><td>" . $group. "</td><td>" . $advisor . "</td><td>" . $location . "</td><td>" . $date."</td><td>" . $time . "</td><td><input type='radio' name='appoitment' value='\".$key.\"'></td></tr>");
+        echo ("<tr><td>" . $group. "</td><td>" . $advisor . "</td><td>" . $location . "</td><td>" . $date."</td><td>" . $time . "</td><td><input type='radio' name='appoitment' value='$key'></td></tr>");
       }
     } while ($rows = mysql_fetch_array($results));
     
@@ -98,13 +98,13 @@ else
 
     $query = "SELECT `NumStu` FROM `Appointment` WHERE `Key` = ".$selected." lIMIT 1";
     $setApp = $COMMON->executeQuery($query, $_SERVER["SCRIPT_NAME"]);
-    $num  = mysql_result($setApp,0);
+    $setappArray = mysql_fetch_array($setApp);
+    $num  = $setappArray['NumStu'];
     $num++;
-
 
     $updateQuery = ("UPDATE `Appointment` SET `Stu".$num."` = ". $student. " WHERE `Key` = ".$selected);
     $COMMON->executeQuery($updateQuery, $_SERVER["SCRIPT_NAME"]);
-    
+
     $updateQuery = ("UPDATE `Appointment` SET `NumStu` = ".$num. " WHERE `Key` = ".$selected);
     $COMMON->executeQuery($updateQuery, $_SERVER["SCRIPT_NAME"]);
     //refresh page

@@ -13,7 +13,7 @@ Date:	 10/8/16  Edited 10/13/16 by Elizabeth
 include("VerifySession.php");
 
 $verify = "staffID";
-$redirect = "https://swe.umbc.edu/~michris1/CMSC331/advisingProjectPt1/public_html/staffSignIn.html";
+$redirect = "../public_html/staffSignIn.html";
 
 $VERIFY = new Verify($verify, $redirect);
 $VERIFY->verifySession();

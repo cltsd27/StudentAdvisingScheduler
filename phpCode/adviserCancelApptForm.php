@@ -1,5 +1,14 @@
 <?php
+/*
+File:	 adviserCancelApptForm.php
+Project: CMSC 331 Project 1
+Author:	 Christopher Mills
+Date:	 10/8/16
 
+         This is the form that an adviser uses to choose appointment(s) to delete
+*/
+
+// Verify that the user is logged in as a staff member
 include("VerifySession.php");
 include("CommonMethods.php");
 $verify = "staffID";
@@ -8,7 +17,7 @@ $redirect = "../public_html/staffSignIn.html";
 $VERIFY = new Verify($verify, $redirect);
 $VERIFY->verifySession();
 
-
+//query database for appointments that belong to the logged in adviser
 $key = $_SESSION["key"];
 $queryAppointments = "SELECT * FROM `Appointment` WHERE `Adviser` = $key";
 $debug = false;

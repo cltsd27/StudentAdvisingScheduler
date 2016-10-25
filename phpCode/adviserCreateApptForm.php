@@ -1,5 +1,14 @@
 <?php
+/*
+File:	 adviserCreateApptForm.php
+Project: CMSC 331 Project 1
+Author:	 Christopher Mills
+Date:	 10/8/16  
+         
+         This file holds the form for an adviser to create an appointment
+*/
 
+//verify the current user is logged in as a staff member
 include("VerifySession.php");
 
 $verify = "staffID";

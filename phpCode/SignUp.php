@@ -1,12 +1,18 @@
 <?php
 
 
-  /*
-  ** This class is responsible for signing a user in
-  ** and creating a row in the table if the user does
-  ** not exist. 
-  **
-  */
+/*
+
+File:    SignUp.php
+Project: CMSC 331 Project 1
+Author:  Christopher Mills
+Date:    10/8/16
+        
+         This class is responsible for signing a user in
+	 and creating a row in the table if the user does
+	 not exist. 
+
+*/
 class SignUp 
 {
 
@@ -18,7 +24,12 @@ class SignUp
   var $COMMON;
 
   
-
+  /* constructor 
+  ** $fields:   array that contains the keys of the posted data
+  ** $postData: the posted data
+  ** $ID:       either staffID or studentID
+  ** $table:    the name of the table that is used for logging in
+  */
   function SignUp($fields, $postData, $ID, $table) {
   
     include('CommonMethods.php');  
@@ -32,11 +43,30 @@ class SignUp
     $this->escapedID = mysql_real_escape_string($this->postData[$this->ID]);
 
   }
+  
+  /* signIn
+  ** Precondition: none
+  ** Postcondition: the user is either signed up and logged in, or just logged in
+  ** NOTE: this is the only function that other php pages should call!
+  */
+  function signIn() {
+    
+    
+    if(!$this->isUserPresent()) {
+      $insert = $this->buildInsertQuery();
+      $this->COMMON->executeQuery($insert, $_SERVER["SCRIPT_NAME"]);
+    }
+    $this->setSessionVariables();
+  }
 
+  /* getEscapedData
+  ** Precondition: postData and fields are set
+  ** Postcondition: an array is returned that has all the elements of postData
+  **                escaped using mysql_real_escape_string
+  */
   function getEscapedData(){
     
     $escapedData;
-    //escape all the data fields and return the array of data
     foreach($this->fields as $field) {
       
       $escapedData[$field] = mysql_real_escape_string($this->postData[$field]);
@@ -47,7 +77,10 @@ class SignUp
   }
 
 
-  //return true if the user is present in the database, otherwise false
+  /* isUserPresent
+  ** Precondition: $this->table exists in the database
+  ** Postcondition: a boolean is returned indicating whether the user exists already
+  */
   function isUserPresent() {
 
 
@@ -60,11 +93,18 @@ class SignUp
     }
   }
 
+  /* buildSearchQuery
+  ** Precondition: $this->table exists in the database
+  ** Postcondition: an SQL query that checks for an ID is returned
+  */
   function buildSearchQuery() {
     return "SELECT * FROM `$this->table` WHERE `ID` = '$this->escapedID'";
   }
 
-  //insert the user into the table by using the data from $fields
+  /* buildInsertQuery
+  ** Precondition: $this->table exists in the database
+  ** Postcondition: a query that inserts a user based on the $this->postData is returned
+  */
   function buildInsertQuery() {
 
     $escapedData = $this->getEscapedData();
@@ -80,6 +120,11 @@ class SignUp
     return $insert;
   }
 
+  /* setSessionVariables
+  ** Precondition: the user has been created already
+  ** Postcondition: php session variables are set based on the users information
+  **                effectively logging the user in
+  */
   function setSessionVariables() {
 
     session_start();
@@ -94,16 +139,7 @@ class SignUp
     }
   }
 
-  //This should be the only function called by other php pages
-  function signIn() {
-    
-    
-    if(!$this->isUserPresent()) {
-      $insert = $this->buildInsertQuery();
-      $this->COMMON->executeQuery($insert, $_SERVER["SCRIPT_NAME"]);
-    }
-    $this->setSessionVariables();
-  }
+
 
 }
 

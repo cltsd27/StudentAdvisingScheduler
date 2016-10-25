@@ -1,5 +1,15 @@
 <?php
+/*
+File:	 adviserCancelAppt.php
+Project: CMSC 331 Project 1
+Author:	 Christopher Mills 
+Date:	 10/8/16
 
+         This file creates the query to delete appointment(s) and then 
+	 redirects back to the cancel appointment form page
+*/
+
+//verify that the current user is logged in as a staff member
 include("VerifySession.php");
 include("CommonMethods.php");
 $verify = "staffID";

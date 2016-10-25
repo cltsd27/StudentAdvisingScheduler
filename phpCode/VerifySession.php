@@ -1,13 +1,18 @@
 <?php 
 
 
-  /*
-  ** This class acts as a way to verify the session. Students
-  ** should only be able to view webpages that are meant for students
-  ** and not advisors and vice versa.
-  ** NOTE: Verify a session before any other php code is run!!
-  **
-   */
+/*
+File:    VerifySession.php
+Project: CMSC 331 Project 1
+Author:  Christopher Mills
+Date:    10/8/16
+         
+         This class acts as a way to verify the session. Students
+	 should only be able to view webpages that are meant for students
+	 and not advisors and vice versa.
+	 NOTE: Verify a session before any other php code is run!!
+
+*/
 class Verify
 {
 
@@ -24,7 +29,10 @@ class Verify
     
   }
 
-  //If the current session is invalid, redirect
+  /* verifySession
+  ** Precondition: none
+  ** Postcondition: the user is redirected to a log in page if they are not logged in
+  */
   function verifySession() {
 
     session_start();

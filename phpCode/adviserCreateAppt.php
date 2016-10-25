@@ -1,19 +1,26 @@
 <?php
 
+/*
+File:	 adviserCreateAppt.php
+Project: CMSC 331 Project 1
+Author:	 Christopher Mills 
+Date:	 10/8/16
+
+         This file handles the insert query to make an appointment
+*/
+
 session_start();
 
 include('./CommonMethods.php');
 $debug = false;
 $COMMON = new Common($debug);
 
+//grab the posted data
 $advisor = mysql_real_escape_string($_SESSION["key"]);
 $isGroup = isset($_POST["cbIsGroup"]) ? 1 : 0;
 $location = mysql_real_escape_string($_POST["tfLocation"]);
 $date = mysql_real_escape_string($_POST["date"]);
 $time = mysql_real_escape_string($_POST["Time"]);
-
-$insertMeetingQuery = "INSERT INTO `Appointment` (`Key`, `Adviser`, `IsGroup`, `NumStu`, `Location`, `Date`, `Time`) VALUES ('', $advisor, $isGroup, 0, '$location', '$date', '$time')";
-$COMMON->executeQuery($insertMeetingQuery, $_SERVER["SCRIPT_NAME"]);
 
 // HTML Head
 include("../public_html/head.html");

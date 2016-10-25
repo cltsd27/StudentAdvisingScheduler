@@ -83,13 +83,14 @@ else
       }
     } while ($rows = mysql_fetch_array($results));
     
-    
+    if($numApp>0){
     echo ("</table>");
     
     echo("<input type=\"submit\" name=\"submitButton\"  value=\"Submit\"><br><br>");
     echo("</form>");
     
     echo("<a href=\"../public_html/studentHome.html\">Student Home</a>");
+  }
   }
 
   //after selecting an appointment you can submit it to the data base
@@ -114,10 +115,7 @@ else
   //if no appointment exist state so
   if($numApp == 0){
     echo ("Sorry there are no appointments availible at this time<br>\t");
-    echo("<form method=\"POST\" action='../public_html/studentHome.html'>"); 
-    echo("<br><input type=\"submit\" name=\"backButton\"  value=\"Back\">");
-    echo("</form>");
-
+    echo("<a href=\"../public_html/studentHome.html\">Student Home</a>");
   }
 
 }
